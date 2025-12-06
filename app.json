@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Proyecto",
-    "slug": "Proyecto",
+    "name": "GIOSTORE",
+    "slug": "giostore",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,17 +10,26 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#b51414"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config":{
+        "googleMapsApikey": "AIzaSyB0Ddnf-fj0dDz1QqCMvW-sb-18RWJgwj4"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#b51414"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.giostore.app",
+      "config":{
+        "googleMaps":{
+          "apikey": "AIzaSyB0Ddnf-fj0dDz1QqCMvW-sb-18RWJgwj4"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
