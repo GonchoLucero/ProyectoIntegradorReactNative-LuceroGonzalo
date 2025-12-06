@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  TextInput,
-  View, 
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Alert
-} from 'react-native';
+import { StyleSheet, Text, TextInput,View, TouchableOpacity,KeyboardAvoidingView,Platform,ScrollView,Alert} from 'react-native';
 
 import { auth } from '../firebase'; 
 import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -41,7 +31,6 @@ export default function RegisterScreen({ navigation }) {
       await createUserWithEmailAndPassword(auth, email, password);
       await signOut(auth);
       
-      // Limpiar campos
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -57,7 +46,6 @@ export default function RegisterScreen({ navigation }) {
         ]
       );
     } catch (err) {
-      // Manejo de errores
       if (err.code === 'auth/email-already-in-use') {
         Alert.alert('Error', 'Este email ya existe');
       } else if (err.code === 'auth/invalid-email') {

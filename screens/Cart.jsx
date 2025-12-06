@@ -1,28 +1,15 @@
-// screens/Cart.jsx
-
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  TouchableOpacity,
-  Alert,
-  FlatList,
-  Image,
-  SafeAreaView
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,Alert,FlatList,Image,SafeAreaView} from 'react-native';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Ionicons } from '@expo/vector-icons'; // Asumiendo que usas Expo o tienes esta librería instalada
+import { Ionicons } from '@expo/vector-icons'; 
 
-// IMPORTACIONES DE REDUX: Usamos los hooks y las acciones del slice
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, clearCart, removeItem } from '../slices/cartSlice';
 
 
 export default function Cart({ user, navigation }) {
   
-  // Hooks de Redux para obtener el estado y despachar acciones
   const cartItems = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalItems = useSelector((state) => state.cart.totalItems);
@@ -53,7 +40,6 @@ export default function Cart({ user, navigation }) {
     );
   };
 
-  // Función para manejar la eliminación total de un ítem
   const handleRemoveItem = (productId, productName) => {
     Alert.alert(
       'Eliminar producto',
@@ -63,7 +49,6 @@ export default function Cart({ user, navigation }) {
         { 
           text: 'Eliminar', 
           onPress: () => {
-            // ✅ USAMOS LA ACCIÓN removeItem corregida
             dispatch(removeItem(productId)); 
           },
           style: 'destructive'
@@ -72,14 +57,11 @@ export default function Cart({ user, navigation }) {
     );
   };
 
-  // Función para incrementar la cantidad
   const handleIncreaseQuantity = (item) => {
     dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
   };
 
-  // Función para decrementar la cantidad
   const handleDecreaseQuantity = (item) => {
-    // updateQuantity maneja la eliminación si la cantidad llega a 0
     dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
   };
 
@@ -102,13 +84,10 @@ export default function Cart({ user, navigation }) {
   
   const handleCheckout = () => {
     Alert.alert('Comprar', 'Funcionalidad de compra aún no implementada.');
-    // Aquí podrías navegar a una pantalla de pago.
   };
 
-  // Componente de cada item en la lista
   const renderItem = ({ item }) => (
     <View style={styles.cartItem}>
-      {/* Es importante que item.image sea una fuente válida (como require('...')) */}
       <Image source={item.image} style={styles.itemImage} resizeMode="cover" />
       <View style={styles.itemDetails}>
         <Text style={styles.itemName} numberOfLines={2}>{item.name}</Text>
@@ -206,8 +185,6 @@ export default function Cart({ user, navigation }) {
 }
 
 
-// --- ESTILOS ---
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -251,7 +228,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 4,
   },
-  // Control de Cantidad
   quantityControl: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -276,12 +252,10 @@ const styles = StyleSheet.create({
     minWidth: 20,
     textAlign: 'center',
   },
-  // Botón de Eliminar
   removeButton: {
     padding: 5,
     marginLeft: 10,
   },
-  // Resumen
   summaryContainer: {
     marginTop: 20,
     paddingVertical: 15,
@@ -305,7 +279,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#b51414',
   },
-  // Botones de Finalizar y Vaciar
   checkoutButton: {
     backgroundColor: '#b51414',
     padding: 15,
@@ -327,7 +300,6 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 16,
   },
-  // Footer y Vacío
   footer: {
     padding: 15,
     backgroundColor: '#fff',

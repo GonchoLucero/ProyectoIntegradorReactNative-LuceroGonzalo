@@ -1,23 +1,13 @@
-// ProductDetail.jsx
 import React, { useState } from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  Image, 
-  ScrollView,
-  TouchableOpacity,
-  Alert
-} from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity,Alert} from 'react-native';
 
-// Reemplazamos useCart por los hooks y acciones de Redux
 import { useDispatch } from 'react-redux'; 
 import { addItem } from '../slices/cartSlice';
 
 export default function ProductDetail({ route, navigation }) {
   const { product } = route.params;
   const [quantity, setQuantity] = useState(1);
-  const dispatch = useDispatch(); // Usar useDispatch
+  const dispatch = useDispatch(); 
 
   const increaseQuantity = () => {
     setQuantity(prev => prev + 1);
@@ -30,7 +20,6 @@ export default function ProductDetail({ route, navigation }) {
   };
 
   const handleAddToCart = () => {
-    // Usamos dispatch con el payload: { product: producto, quantity: cantidad }
     dispatch(addItem({ product, quantity })); 
     
     Alert.alert(
@@ -73,7 +62,6 @@ export default function ProductDetail({ route, navigation }) {
 
         <View style={styles.divider} />
         
-        {/* Selector de Cantidad */}
         <Text style={styles.sectionTitle}>Cantidad:</Text>
         <View style={styles.quantityContainer}>
           <TouchableOpacity 

@@ -2,8 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons'; 
-
-// --- PANTALLAS ---
+ 
 import HomeScreen from './HomeScreen';
 import ProductDetail from './ProductDetail';
 import Cart from './Cart';
